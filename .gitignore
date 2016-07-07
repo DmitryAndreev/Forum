@@ -12,3 +12,7 @@
 /Web/obj/Debug
 /packages/
 /Web/*.user
+/WebApi/bin
+/WebApi/obj/Debug
+/.vs/Forum/v14/*.suo
+/.vs/config
