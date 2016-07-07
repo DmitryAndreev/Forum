@@ -29,7 +29,6 @@ namespace Forum.WebApi
 			}
 
 			app.UseCors(CorsOptions.AllowAll);
-
 			WebApiConfig.Register(configuration);
 			UnityWebApiActivator.Start(configuration);
 			app.UseWebApi(configuration);
