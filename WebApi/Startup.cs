@@ -8,6 +8,7 @@ namespace Forum.WebApi
 	using System.Threading;
 	using System.Web.Http;
 	using DataAccess.Migrations;
+	using FluentValidation.WebApi;
 	using JetBrains.Annotations;
 	using Microsoft.Owin.BuilderProperties;
 	using Microsoft.Owin.Cors;
@@ -32,7 +33,7 @@ namespace Forum.WebApi
 			WebApiConfig.Register(configuration);
 			UnityWebApiActivator.Start(configuration);
 			app.UseWebApi(configuration);
-
+			FluentValidationModelValidatorProvider.Configure(configuration);
 			UpdateDatabase();
 		}
 

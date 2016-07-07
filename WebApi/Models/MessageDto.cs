@@ -1,9 +1,11 @@
 ﻿namespace Forum.WebApi.Models
 {
 	using System;
+	using FluentValidation.Attributes;
 	using JetBrains.Annotations;
+	using Validator;
 
-	[UsedImplicitly]
+	[Validator(typeof(MessageValidator))]
 	public class MessageDto
 	{
 		[UsedImplicitly]
