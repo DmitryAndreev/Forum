@@ -1,4 +1,4 @@
-﻿namespace Forum.Web.Infrastracture
+﻿namespace Forum.WebApi.Infrastracture
 {
 	using System.Net;
 	using System.Net.Http;

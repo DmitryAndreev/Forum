@@ -1,10 +1,8 @@
-﻿namespace Forum.Web.Controllers
+﻿namespace Forum.WebApi.Controllers
 {
-    using System.Web.Http;
+	using System.Web.Http;
 
-    //[Authorize]
-    public abstract class BaseController : ApiController
-    {
-
-    }
+	public abstract class BaseController : ApiController
+	{
+	}
 }

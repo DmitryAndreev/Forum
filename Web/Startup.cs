@@ -1,8 +1,8 @@
-﻿using Forum.Web;
+﻿using Forum.WebApi;
 using Microsoft.Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace Forum.Web
+namespace Forum.WebApi
 {
 	using System.Data.Entity.Migrations;
 	using System.Threading;

@@ -1,4 +1,4 @@
-﻿namespace Forum.Web.Controllers
+﻿namespace Forum.WebApi.Controllers
 {
 	using System;
 	using System.Linq;

@@ -1,4 +1,4 @@
-﻿namespace Forum.Web
+﻿namespace Forum.WebApi
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

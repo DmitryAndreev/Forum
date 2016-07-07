@@ -1,4 +1,4 @@
-﻿namespace Forum.Web
+﻿namespace Forum.WebApi
 {
 	using System;
 	using System.Data.Entity;

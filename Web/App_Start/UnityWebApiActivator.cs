@@ -1,4 +1,4 @@
-namespace Forum.Web
+namespace Forum.WebApi
 {
 	using System.Web.Http;
 	using Microsoft.Practices.Unity.WebApi;

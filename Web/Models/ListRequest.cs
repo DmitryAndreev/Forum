@@ -1,4 +1,4 @@
-﻿namespace Forum.Web.Models
+﻿namespace Forum.WebApi.Models
 {
 	using System.Collections.Generic;
 	using BusinessLogic;

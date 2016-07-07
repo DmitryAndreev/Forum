@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace Forum.Web
+namespace Forum.WebApi
 {
 	using Newtonsoft.Json;
 	using Newtonsoft.Json.Serialization;

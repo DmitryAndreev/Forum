@@ -1,4 +1,4 @@
-﻿namespace Forum.Web.Profiles
+﻿namespace Forum.WebApi.Profiles
 {
 	using AutoMapper;
 	using Domain;

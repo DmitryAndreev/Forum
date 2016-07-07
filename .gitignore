@@ -1,0 +1,14 @@
+/BusinessLogic.Tests/bin/Debug
+/BusinessLogic.Tests/obj/Debug
+/BusinessLogic/bin/Debug
+/BusinessLogic/obj/Debug
+/DataAccess.Tests/bin/Debug
+/DataAccess.Tests/obj/Debug
+/DataAccess/bin/Debug
+/DataAccess/obj/Debug
+/Domain/bin/Debug
+/Domain/obj/Debug
+/Web/bin
+/Web/obj/Debug
+/packages/
+/Web/*.user

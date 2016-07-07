@@ -1,4 +1,4 @@
-﻿namespace Forum.Web.Models
+﻿namespace Forum.WebApi.Models
 {
 	using System;
 	using JetBrains.Annotations;
@@ -11,6 +11,7 @@
 
 		[UsedImplicitly]
 		public string Header { get; set; }
+
 		[UsedImplicitly]
 		public string Body { get; set; }
 	}
