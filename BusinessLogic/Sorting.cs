@@ -1,4 +1,6 @@
-﻿namespace Forum.BusinessLogic
+﻿using System;
+
+namespace Forum.BusinessLogic
 {
 	public class Sorting
 	{
@@ -8,13 +10,13 @@
 			this.IsAsc = isAsc;
 		}
 
-		public string Field { get; }
+		public string Field { get; private set; }
 
-		public bool IsAsc { get; }
+		public bool IsAsc { get; private set; }
 
 		public override string ToString()
 		{
-			return $"{Field} {(IsAsc ? "ASC" : "DESC")}";
+			return String.Format("{0} {1}", Field, IsAsc ? "ASC" : "DESC");
 		}
 	}
 }

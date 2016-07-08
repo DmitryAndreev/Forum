@@ -17,7 +17,10 @@
 			_context = context;
 		}
 
-		public IRepository<Message> MessageRepository => _itemRepository ?? (_itemRepository = new EntityRepository<Message>(_context));
+		public IRepository<Message> MessageRepository
+		{
+			get { return _itemRepository ?? (_itemRepository = new EntityRepository<Message>(_context)); }
+		}
 
 		public async Task Commit()
 		{

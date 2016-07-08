@@ -11,9 +11,18 @@
 
 		public int? PageSize { get; set; }
 
-		public int PageSizeValue => PageSize ?? 10;
+		public int PageSizeValue
+		{
+			get { return PageSize ?? 10; }
+		}
 
-		public int SkipCount => (Page - 1) * PageSizeValue;
+		public int SkipCount
+		{
+			get
+			{
+				return (Page - 1) * PageSizeValue;
+			}
+		}
 
 		public void FixPageForCount(int count)
 		{
