@@ -1,5 +1,6 @@
 # Forum
 The features of this solution
+
 1. At the moment there are no logging operations (delete, add, update).
 2. In this implementation, UnitofWork depends on the Repository, it's not really correctly but for simplicity designed.
 3. When the application starts, run EF migrations, the industrial solution is not quite right. It is advisable to adjust the version of the database with which the application is running
