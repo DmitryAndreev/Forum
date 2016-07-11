@@ -1,9 +1,9 @@
 # Forum
-Особености решения
- 1. На даный момент нет логирования операций (удаления, добавления, обновления).
- 2. В данной реализации UnitofWork знает про Repository, это не совсем коректно, но для простоты реализовал так.
- 3. При запуске приложения накатываются EF-миграции, в промышленом решении это не совсем правильно. Желательно, регулировать версию БД с  которой работает приложение
- 4. Добавил MessageDto, хотя она полностью совпадает с Message. Сделал на будущее, чтобы слой Web Api не зависил от БД. 
- 5. Сделал максимальную длину Header 250.
- 6. Добавил Pagination, чтобы не загружались сразу все сообщения.
- 7. Предусмотрел, что в дальнейшем может появится сортировка и фильтрация, добавил для этого соответствующие методы 
+The features of this solution
+1. At the moment there are no logging operations (delete, add, update).
+2. In this implementation, UnitofWork depends on the Repository, it's not really correctly but for simplicity designed.
+3. When the application starts, run EF migrations, the industrial solution is not quite right. It is advisable to adjust the version of the database with which the application is running
+4.Added MessageDto, although it coincides with the Message. Made for the future, to layer the Web Api does not depend on the database.
+5. Limited the maximum length of the Header 250.
+6. Added Pagination for page download.
+7. Provided that in the future may appear sort and filter, added the appropriate methods
