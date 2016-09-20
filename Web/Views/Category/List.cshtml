@@ -1,0 +1,30 @@
+﻿@using System.Linq
+@model IEnumerable<Domain.Model.Entities.Category>
+
+@{
+    Layout = null;
+}
+
+@if (Model.Any())
+{
+    <div class="b-list b-catalog__ls js-categories__ls">
+        <ul class="b-list__ls">
+           @{
+               var first = true;
+                foreach (var item in Model)
+                {
+                    if (first)
+                    {
+                        <li class="b-list__i js-categories__i is-current" data-id="@item.Id"><span>@item.Name</span></li>
+                        first = false;
+                    }
+                    else
+                    {
+                        <li class="b-list__i js-categories__i" data-id="@item.Id"><span>@item.Name</span></li>
+                    }
+
+                }
+           } 
+        </ul>
+    </div>
+}

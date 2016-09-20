@@ -1,0 +1,20 @@
+﻿@model Web.Application.Administration.Forms.NotificationsForm
+
+@using (Html.BeginForm("Notifications", "Administration", FormMethod.Post))
+{
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Header)</dt>
+        <dd>@Html.TextAreaFor(x => x.Header, new { @class = "form-textarea" })</dd>
+        <dd>@Html.ValidationMessageFor(x => x.Header)</dd>
+    </dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Message)</dt>
+        <dd>@Html.TextAreaFor(x => x.Message, new { @class = "form-textarea" })</dd>
+        <dd>@Html.ValidationMessageFor(x => x.Message)</dd>
+    </dl>
+
+    <div class="buttons">
+        <input type="submit" value="Добавить" />
+    </div>
+}

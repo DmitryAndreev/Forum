@@ -58,7 +58,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageServiceTests.cs" />
+    <Compile Include="CardServiceTests.cs" />
+    <Compile Include="FakeEntityExtensionMethodsWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,16 @@
+﻿@if (TempData["Notice"] != null)
+{
+    <div class="g-notice">
+        <div class="g-notice__icon">!</div>
+        <div class="g-notice__close">&times;</div>
+        @TempData["Notice"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="g-notice g-notice--error">
+        <div class="g-notice__icon">!</div>
+        <div class="g-notice__close">&times;</div>
+        @TempData["Error"]
+    </div>
+}

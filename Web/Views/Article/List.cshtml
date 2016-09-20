@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Domain.Model.Articles.Dto.ArticleListItemDto>
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Title = "Помощь и контакты";
+}
+
+<div class="b-section">
+    <h3 class="b-section__header">@ViewBag.Title</h3>
+    
+    <div class="b-section__body b-profile">
+        <div class="b-section__sidebar">
+            <ul class="b-list__ls">
+                @foreach (var category in (IEnumerable<SelectListItem>) ViewBag.Categories)
+                {
+                    <li class="b-list__i @(category.Selected ? "is-current": "")">
+                        @Html.ActionLink(category.Text, "List", "Article", new {id = category.Value}, null)
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="b-section__content">
+            @if(Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <article class="b-article">
+                        <h5 class="b-article__header">@Html.ActionLink(item.Title, "Show", "Article", new {item.Id}, null)</h5>
+                        <div class="b-article__content">
+                            @Html.Raw(@item.Description)
+                        </div>
+                        <span>@item.CreatedAt.ToShortDateString()</span>
+                    </article>
+                }
+
+                <hr class="g-line" />
+            } else
+            {
+                <div class="g-notice">
+                    <div class="g-notice__icon">!</div>
+                    В данный момент нет статей.
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@using Web.Application.Administration.Tabs
+@using StackExchange.Profiling
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>@ViewBag.Title | БСО Онлайн</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="">
+
+        <script type="text/javascript" src="@Url.Content("~/private/build/js/jquery.pack.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/private/build/js/jquery.ui.pack.min.js")"></script>
+
+        <link rel="shortcut icon" href="@Url.Content("~/public/images/blanksomat_5_favicon.png")" type="image/png">
+
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/private/build/css/telerik.pack.min.css")" />
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/private/build/css/style.min.css")" />
+    </head>
+    <body class="common">
+        <ul id="toolbar">
+            @{
+                Html.RenderTabs<AdministrationTabs>(
+                    @<text>
+                         <li class="button left current">
+                             <a href="@item.Action">
+                                 <span>@item.Label</span>
+                             </a>
+                         </li>
+                     </text>,
+                    @<text>
+                         <li class="button left">
+                             <a href="@item.Action">
+                                 <span>@item.Label</span>
+                             </a>
+                         </li>
+                     </text>);
+            }
+
+            <li class="button right">
+                <a href="@Url.Action("SignOut", "Auth")">
+                    <img src="@Url.Content("~/Content/Images/exit.png")" alt="" />
+                    <span>Выход</span>
+                </a>
+            </li>
+            
+        </ul>
+
+        <section class="tab-content">
+            <h2>@ViewBag.Title</h2>
+            @RenderBody()
+        </section>
+
+        @{
+            Html.Telerik()
+                .ScriptRegistrar()
+                .jQuery(false)
+                .jQueryValidation(false)
+                .Globalization(true)
+                .Render();
+        }
+
+        @RenderSection("LastScripts", false)
+
+        @if (HttpContext.Current.IsDebuggingEnabled)
+        {
+            @MiniProfiler.RenderIncludes()
+        }
+    </body>
+
+</html>

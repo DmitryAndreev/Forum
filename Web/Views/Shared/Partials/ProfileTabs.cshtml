@@ -1,0 +1,25 @@
+﻿@using Web.Application.Profile.Tabs
+@using Roles = Domain.Model.Definitions.Collections.Roles
+@{
+    var exceptedTabs = Html.IsInRole(Roles.Editors)
+                         ? Enumerable.Empty<ProfileTabs>()
+                         : new[] {ProfileTabs.AccountingDocuments};
+}
+<div class="b-list">
+    <ul class="b-list__ls">
+        @{
+            Html.RenderTabs(
+                @<text>
+                     <li class="b-list__i is-current">
+                         <span>@item.Label</span>
+                     </li>
+                 </text>,
+                @<text>
+                     <li class="b-list__i">
+                         <a href="@item.Action">@item.Label</a>
+                     </li>
+                 </text>,
+                exceptedTabs);
+        }
+    </ul>
+</div>

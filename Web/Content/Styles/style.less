@@ -1,0 +1,136 @@
+﻿@import 'reset';
+@import 'constants';
+@import 'clearfix';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,cyrillic);
+
+@import 'main';
+@import 'article';
+@import 'forms';
+@import 'telerik-metro';
+
+
+.th-wrapper {
+    position: relative;
+}
+
+.t-window-content {
+    background-color: #f2f2f2;
+}
+
+.content-section {
+    padding: 0 15px;
+}
+
+.information-list {
+    overflow: hidden;
+    width: 500px;
+    margin-bottom: 20px;
+
+    dt {
+        font-weight: bold;
+        float: left;
+        width: 40%;
+    }
+
+    dd {
+        float: right;
+        width: 60%;
+    }
+}
+
+.t-textarea {
+    border: none;
+    resize: none;
+    outline: none;
+    width: 370px;
+    height: 54px;
+    padding: 10px 15px;
+    font: normal 14px/18px 'Open Sans', sans-serif;
+
+    &&--high {
+        height: 162px;
+    }
+}
+
+.t-button.t-grid-insert,
+.t-button.t-grid-cancel,
+.t-button.t-grid-update {
+    color: @color-font;
+    background-color: @color-dark;
+    border: 0;
+    outline: 0;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+    margin: 10px 10px 0 0;
+
+    &:hover {
+        background-color: @color-light;
+    }
+}
+
+.proposed-addresses {
+    li {
+        cursor: pointer;
+        color: @color-dark;
+        padding: 5px 15px;
+
+        span {
+            border-bottom: 1px dotted @color-dark;
+        }
+
+        &:hover {
+            color: @color-light;
+
+            span {
+                border-bottom: none;
+            }
+        }
+
+        &:nth-child(odd) {
+            background-color: @color-tab-active;
+        }
+
+        &:nth-child(even) {
+            background-color: @color-tab-inactive;
+        }
+    }
+}
+
+.is-link {
+    text-decoration: underline;
+    cursor: pointer;
+    color: @color-dark;
+
+    &:hover {
+        text-decoration: none;
+        color: @color-light;
+    }
+}
+
+.delivery-types {
+    dt {
+        color: @color-dark;
+    }
+
+    dd {
+        padding-top: 11px;
+    }
+
+    #delivery-express {
+        display: none;
+    }
+}
+
+.grid-error {
+    background-color: @color-highlight;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    font-size: 80%;
+    font-style: italic;
+    font-weight: bold; 
+}
+
+.t-grid-header-wrap {
+    border: none !important;
+}

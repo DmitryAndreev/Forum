@@ -1,0 +1,619 @@
+﻿body {
+    background-color: @color-background;
+    font: normal 14px/18px 'Open Sans', sans-serif;
+}
+
+#toolbar {
+    background-color: @color-dark;
+    font-size: 0;
+    position: relative;
+    width: 100%;
+    height: @toolbar-height;
+
+    .button {
+        color: @color-font;
+        font-size: 14px;
+        text-align: center;
+
+        &, & a, &.current > a {
+            display: inline-block;
+            width: @button-width;
+            height: @toolbar-height;
+            line-height: @toolbar-height;
+        }
+
+        &.current > a {
+            background-color: @color-light;
+        }
+
+        img {
+            display: inline-block;
+            position: relative;
+            top: 1px;
+            margin-right: 10px;
+        }
+
+        a {
+            color: @color-font;
+            text-decoration: none;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: @color-light;
+        }
+    }
+
+    .button-cart {
+        width: 250px;
+    }
+
+    li.userinfo {
+        @right-margin: 10px;
+
+        color: @color-font;
+        position: absolute;
+        top: 0;
+        right: @button-width + @right-margin;
+        //width: @button-width * 2;
+        //height: @toolbar-height;
+        cursor: default;
+        padding-top: 2px;
+
+        div {
+            font-size: 12px;
+            height: 16px; //@toolbar-height / 2;
+            line-height: 16px; //@toolbar-height / 2;
+            text-align: right;
+        }
+
+        a {
+            color: @color-font;
+        }
+
+        &.userinfo-adm {
+            padding-top: 10px;
+        }
+    }
+
+    .button.left {
+        position: static;
+    }
+
+    .button.right {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+.parent {
+    position: relative;
+
+    &:hover {
+        .nested {
+            display: block;
+        }
+    }
+
+    .nested {
+        position: absolute;
+        top: 54px;
+        left: 0;
+        background-color: @color-light;
+        display: none;
+        z-index: 99;
+
+        li {
+            width: auto;
+            text-align: left;
+            padding: 0 15px;
+
+            &:hover {
+                background-color: lighten(@color-light, 10%);
+            }
+        }
+
+        a {
+            width: auto !important;
+            white-space: nowrap;
+        }
+    }
+
+}
+
+#signin {
+    width: @signin-width;
+    margin: 0 auto;
+    padding-top: 250px;
+
+    h6 {
+        color: @color-dark;
+        margin-bottom: 20px;
+    }
+
+    .field {
+        position: relative;
+
+        input[type=text], input[type=password] {
+            border: none;
+            outline: none;
+            background-color: white;
+            margin: 0;
+            padding-left: 30px;
+            width: @signin-width - 30px;
+            height: @signin-button-height;
+            background-position: 10px center;
+            background-repeat: no-repeat;
+
+            &:focus {
+                background-color: @color-focused;
+            }
+        }
+
+        input[type=text] {
+            background-image: url('/Content/Images/login.png');            
+        }
+
+        input[type=password] {
+            background-image: url('/Content/Images/pass.png');
+        }
+
+        span.field-validation-error {
+            @arrow-width: 10px;
+            @arrow-height: @signin-button-height / 2;
+
+            font-style: italic;
+            font-weight: bold;
+            font-size: 80%;
+            background-color: @color-highlight;
+            background-image: url('/Content/Images/exclamation.png');
+            background-repeat: no-repeat;
+            background-position: 10px 10px;
+            display: block;
+            position: absolute;
+            top: 0;            
+            width: @signin-width;
+            margin-left: @signin-width + @arrow-width * 2;
+            padding: 0 15px 0 25px;
+            
+            &::before {                                        
+                display: block;
+                position: absolute;
+                left: -1 * @arrow-width;
+                width: 0; 
+	            height: 0; 
+	            border-top: @arrow-height solid transparent;
+	            border-bottom: @arrow-height solid transparent; 	
+	            border-right: @arrow-width solid @color-highlight;                    
+                content: ' ';                    
+            }
+
+            &, & span {
+                line-height: @signin-button-height;
+            }
+        }
+    }
+
+    input[type=submit] {
+        color: @color-font;
+        background-color: @color-dark;
+        border: none;
+        outline: none !important;
+        margin: 0;
+        width: @signin-width;
+        height: @signin-button-height;
+        line-height: @signin-button-height;
+
+        &:hover {
+            cursor: pointer;
+            background-color: @color-light;
+        }
+    }
+}
+
+#reset-password {
+    width: 320px;
+    margin: 250px auto 0 auto;
+
+    h6 {
+        color: @color-dark;
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 310px;
+    }
+
+    input[type="submit"] {
+        width: 320px;
+    }
+
+    .field {
+        background-color: @color-tab-active;
+    }
+
+    .field-captcha {
+        padding: 10px 0;
+    }
+
+    #recaptcha_response_field {
+        height: 27px;
+    }
+}
+
+ul.tabs {
+    margin-top: 70px;
+    height: @tab-height;
+
+    li.tab {        
+        background-color: @color-tab-active;
+        display: block;
+        float: left;
+        //width: @tab-width;
+        height: @tab-height;
+
+        &.disabled {
+            background-color: @color-tab-inactive;
+
+            a {
+                text-decoration: none;
+            }
+
+            a span {
+                color: @color-tab-font-inactive;
+
+            }
+        }
+
+        * {
+            display: block;
+            float: left;
+            height: @tab-height;
+        }
+
+        a, .link {
+            text-decoration: none;
+            line-height: @tab-height;
+            padding: 0 20px;
+        }
+
+        .link {
+            cursor: default;
+        }
+
+        .text {
+            color: @color-tab-font-active;
+            font-weight: bold;
+            //width: @tab-width - 55px;
+            //padding-top: 21px;
+        }
+    }
+}
+
+.tab {
+    &.actions i {
+        background-image: url('/Content/Images/actions.png');
+    }
+
+    &.disabled.actions i {
+        background-image: url('/Content/Images/actions-shadow.png');
+    }
+
+    &.exports i {
+        background-image: url('/Content/Images/upload-history.png');
+    }
+
+    &.disabled.exports i {
+        background-image: url('/Content/Images/upload-history-shadow.png');
+    }
+
+    &.clients i {
+        background-image: url('/Content/Images/clients.png');
+    }
+    
+    &.disabled.clients i {
+        background-image: url('/Content/Images/clients-shadow.png');
+    }   
+
+    &.accounts i {
+        background-image: url('/Content/Images/users.png');
+        padding-right: 0px !important;
+    }
+    
+    &.disabled.accounts i {
+        background-image: url('/Content/Images/users-shadow.png');
+    }
+
+    &.document-types i {
+        background-image: url('/Content/Images/card-types.png');
+    }
+    
+    &.disabled.document-types i {
+        background-image: url('/Content/Images/card-types-shadow.png');
+    }
+
+    &.clients span.text, &.accounts span.text {
+        padding-top: 28px !important;
+    } 
+}
+
+.tab-content {
+    background-color: @color-tab-content;
+    padding: 15px;
+
+    .tab-content,
+    .tabs .tab,
+    .tab-content .t-widget.t-grid,
+    .tab-content .t-grid-pager,
+    .tab-content .t-grid-header th,
+    .tab-content td {
+        background-color: darken(@color-tab-content, 3%);
+    }
+}
+
+h2 {
+    color: @color-dark;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 40px 15px 10px 15px;
+}
+
+
+
+h4 {
+    color: @color-dark;
+    margin: 10px 15px;
+    font-size: 16px;
+}
+
+h5 {
+    color: @color-dark;
+    margin: 10px 15px;
+
+    &.subhead {
+        margin: 20px 15px;
+    }
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+a {
+    color: @color-dark;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+a.button {
+    font-size: @font-size;
+    color: @color-font;
+    background-color: @color-dark;
+    border: none;
+    outline: none;
+    display: inline-block;
+    width: @input-width;
+    height: @input-height;
+    line-height: @input-height;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+
+    &.small {
+        width: @input-small-width;        
+    }
+
+    &.disabled {
+        background-color: @color-disabled;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: @color-light;
+    }
+}
+
+.search-result {
+    .t-grid-header {
+        .t-header {
+            .t-link {
+                .t-icon {
+                    top: 17px !important;
+                }
+            }
+        }
+    }
+}
+
+.error-message {
+    width: 500px;
+    margin-left: 15px;
+
+    p {
+        line-height: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .error-details {
+    }
+}
+
+
+.table {
+    min-width: 550px;
+    
+    td {
+        padding: 5px;
+    }
+
+    tr {
+        &:nth-child(odd) {
+            background-color: @color-table-row-odd;
+        }
+
+        &:nth-child(even) {
+            background-color: @color-table-row-even;
+        }
+    }
+
+    &.table-large {
+        td {
+            padding: 15px 20px;
+            font-size: 16px;
+        }
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+// -------------------------------------------------------
+//   LOGO
+// -------------------------------------------------------
+
+html {
+    height: 100%;
+}
+
+body.signin, body.common {
+    @logo-width: 38px;
+    @logo-height: 26px;
+    @logo-margin: 15px;
+
+    min-height: 100%;
+    padding-bottom: @logo-height + @logo-margin + @logo-margin;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+
+    span.logo {
+        display: block;
+        height: @logo-height;
+        line-height: @logo-height;
+        position: absolute;
+        left: @logo-margin;
+        bottom: @logo-margin;
+
+        a {
+            display: inline-block;
+            line-height: @logo-height;
+            margin-right: 5px;
+            text-decoration: none;
+        }
+
+        a, a img {
+            width: @logo-width;
+            height: @logo-height;
+        }
+
+        span {
+            color: @color-disabled;
+            display: inline-block;
+            height: @logo-height;
+            line-height: @logo-height;
+            vertical-align: top;
+            cursor: default;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    }
+}
+
+input.editBoolean {
+    position: relative;
+    top: 7px;
+    width: 16px;
+    height: 16px;
+}
+
+.layout-header {
+    overflow: hidden;
+    height: 80px;
+    position: relative;
+    padding-right: 450px;
+}
+
+.search-form {
+    position: absolute;
+    top: 31px;
+    right: 20px;
+    width: 400px;
+
+    form {
+        margin: 0;
+    }
+
+    dl {
+        overflow: hidden;
+    }
+
+    dt {
+        width: 300px;
+        float: left;
+
+        input[type="text"] {
+            width: 280px;
+            padding: 0 10px;
+        }
+    }
+
+    dd {
+        width: 100px;
+        float: right;
+
+        input[type="submit"] {
+            width: 100px;
+        }
+    }
+}
+
+// -------------------------------------------------------
+//  задача 200 - скрыть иконку обновления
+// -------------------------------------------------------
+
+.t-refresh{
+    display: none;
+}
+
+// -------------------------------------------------------
+//  задача 188 - нормальная ширина поля комментариев 
+// -------------------------------------------------------
+
+form .table-wrapper{
+    width: 900px;
+}
+#Comments{
+    width: 870px;
+    margin-right: -1000px;
+}
+
+// -------------------------------------------------------
+//  задача 193 - нормальная ширина количество 
+// -------------------------------------------------------
+#Count{
+    width: 70px;
+}
+
+.t-numerictextbox .t-formatted-value{
+    margin-top: 9px;
+}
+
+.t-grid-header .t-link{
+    font-weight: bold;
+}
+
+.button-head {
+    display: block;
+    margin: 20px 0 !important;
+}

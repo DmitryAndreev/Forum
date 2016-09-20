@@ -1,11 +1,12 @@
-﻿namespace Forum.DataAccess
+﻿using Forum.Domain;
+
+namespace Forum.DataAccess
 {
 	using System.Threading.Tasks;
-	using Domain;
 
 	public interface IUnitOfWork
 	{
-		IRepository<Message> MessageRepository { get; }
+		IRepository<Card> CardRepository { get; }
 
 		Task Commit();
 	}

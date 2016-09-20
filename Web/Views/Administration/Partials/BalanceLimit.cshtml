@@ -1,0 +1,14 @@
+﻿@model Web.Application.Administration.Forms.BalanceLimitForm
+
+@using (Html.BeginForm("SaveBalanceLimit", "Administration", FormMethod.Post))
+{
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Limit)</dt>
+        <dd>@Html.EditorFor(x => x.Limit)</dd>
+        <dd>@Html.ValidationMessageFor(x => x.Limit)</dd>
+    </dl>
+
+    <div class="buttons">
+        <input type="submit" value="Изменить" />
+    </div>
+}

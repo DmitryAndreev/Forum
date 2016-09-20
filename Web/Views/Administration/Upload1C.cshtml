@@ -1,0 +1,74 @@
+﻿@using AutoMapper
+@using Domain.Model.Definitions
+@model Web.Application.Administration.Forms.Upload1CForm
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Выгрузка в 1С";
+}
+@Html.Partial("Partials/UploadsTabs")
+
+@using (Html.BeginForm("Upload1C", "Administration", FormMethod.Post))
+{
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Type)</dt>
+        <dd>@Html.TelerikDropDownListFor(x => x.Type, Mapper.Map<SelectList>(Enum.GetValues(typeof(UploadType))))</dd>
+        <dd>@Html.ValidationMessageFor(x => x.Type)</dd>
+    </dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.BeginDate)</dt>
+        <dd>
+            @(Html
+                        .Telerik()
+                        .DatePickerFor(x => x.BeginDate)
+                        .OpenOnFocus(true)
+                        .ShowButton(false)
+                        .ClientEvents(e => e.OnChange("startChange"))
+                        )
+        </dd>
+    <dd>@Html.ValidationMessageFor(x => x.BeginDate)</dd>
+</dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.EndDate)</dt>
+        <dd>
+            @(Html
+                  .Telerik()
+                  .DatePickerFor(x => x.EndDate)
+                  .OpenOnFocus(true)
+                  .ShowButton(false)
+                  .ClientEvents(e => e.OnChange("endChange"))
+            )
+    </dd>
+    <dd>@Html.ValidationMessageFor(x => x.EndDate)</dd>
+</dl>
+
+    <div class="buttons">
+        <input type="submit" value="Выгрузить" />
+    </div>
+}
+
+@section LastScripts{
+    <script type="text/javascript">
+        // TODO: Вынести
+        function startChange(e) {
+            var endPicker = $("#EndDate").data("tDatePicker");
+            var startDate = e.value;
+
+            if (startDate) {
+                startDate.setDate(startDate.getDate() + 1);
+                endPicker.min(startDate);
+            }
+        }
+
+        function endChange(e) {
+            var startPicker = $("#StartDate").data("tDatePicker");
+            var endDate = e.value;
+
+            if (endDate) {
+                endDate.setDate(endDate.getDate() - 1);
+                startPicker.max(endDate);
+            }
+        }
+    </script>
+}

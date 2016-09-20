@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Domain.Model.BlankTemplates.Dtos.BlankTemplateDto>
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Управление бланками";
+}
+
+@{
+    Html.Telerik().Grid(Model)
+        .Name("BlankTemplates")
+        .PrefixUrlParameters(false)
+        .DataKeys(keys => keys.Add(x => x.Id))
+        .Columns(c =>
+                 {
+                     c.Bound(x => x.Name)
+                      .Title("Наименование")
+                      .Width(50);
+                     c.Bound(x => x.Size)
+                      .Title("Размер")
+                      .Template(x => x.Size.GetDescription())
+                      .Width(25);
+
+                     c.Command(
+                         commands => commands
+                                         .Custom("Edit")
+                                         .Action("EditBlankTemplate", "Administration")
+                                         .SendDataKeys(true)
+                                         .Text("Редактировать")).Width(150);
+                 })
+        .Footer(true)
+        .NoRecordsTemplate("Нет строк для отображения")
+        .Render();
+}

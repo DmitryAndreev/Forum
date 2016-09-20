@@ -1,0 +1,165 @@
+﻿@model Web.Application.Articles.Forms.EditArticleForm
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Редактирование статьи";
+}
+
+@Html.Partial("Partials/ArticleTabs")
+
+@using (Html.BeginForm("Edit", "Article"))
+{
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Title)</dt>
+        <dd>@Html.TextBoxFor(x => x.Title)</dd>
+        <dd>@Html.ValidationMessageFor(x => x.Title)</dd>
+    </dl>
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.CategoryId)</dt>
+        <dd>@Html.TelerikDropDownListFor(x => x.CategoryId, (IEnumerable<SelectListItem>) ViewBag.Categories)</dd>
+        <dd>@Html.ValidationMessageFor(x => x.CategoryId)</dd>
+    </dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Description)</dt>
+        <dd>
+            @{ Html.Telerik()
+                   .Editor()
+                   .Name("Description")
+                   .Encode(false)
+                   .HtmlAttributes(new { style = "width: 600px;" })
+                   .Tools(tools => tools
+                                       .Clear()
+                                       .Bold().Italic().Underline()
+                                       .Separator()
+                                       .CreateLink().Unlink()
+                   )
+                   .Render(); }
+        </dd>
+        <dd>@Html.ValidationMessageFor(x => x.Description)</dd>
+    </dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Text)</dt>
+        @{
+            Html.Telerik().Editor()
+                .Name("Text")
+                .Tools(x => x.Superscript().Indent().Separator()
+                    .Custom(z => z.Html("Таблица")
+                        .Template(@<text><a class="insert-table" style="color: white;" t-tool-icon href="#">Таблица</a> </text>)
+                    ).Separator().ViewHTML())
+                .FileBrowser(browser => browser.Browse("Browse", "ImageBrowser")
+                    .Thumbnail("Thumbnail", "ImageBrowser")
+                    .Upload("Upload", "ImageBrowser")
+                    .DeleteFile("DeleteFile", "ImageBrowser")
+                    .DeleteDirectory("DeleteDirectory", "ImageBrowser")
+                    .CreateDirectory("CreateDirectory", "ImageBrowser")
+                )
+                .Encode(false)
+                .HtmlAttributes(new { style = "width: 600px;" })
+                .Value(Model.Text)
+                .Render();
+        }
+        <dd>@Html.ValidationMessageFor(x => x.Text)</dd>
+    </dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.MetaKeywords)</dt>
+        <dd>@Html.TextAreaFor(x => x.MetaKeywords)</dd>
+        <dd>@Html.ValidationMessageFor(x => x.MetaKeywords)</dd>
+    </dl>
+
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.MetaDescription)</dt>
+        <dd>@Html.TextAreaFor(x => x.MetaDescription)</dd>
+        <dd>@Html.ValidationMessageFor(x => x.MetaDescription)</dd>
+    </dl>
+    
+    @Html.HiddenFor(x => x.Id)
+
+    <div class="buttons">
+        <input type="submit" value="Сохранить" />
+    </div>
+    @Html.GlobalValidationMessage()
+}
+
+@{
+    Html.Telerik().Window()
+        .Name("InsertTable")
+        .Title("Вставка таблицы")
+        .ClientEvents(events => events.OnOpen("InsetTableWindowOpen"))
+        .Resizable(resizing => resizing.Enabled(false))
+        .Content(@<text>
+                      <form>
+                          <dl class="form-inline">
+                              <dt>@Html.Label("Колонок")</dt>
+                              <dd>@Html.TextBox("Columns")</dd>
+                          </dl>
+                          <dl class="form-inline">
+                              <dt>@Html.Label("Строк")</dt>
+                              <dd>@Html.TextBox("Rows")</dd>
+                          </dl>
+                          <div class="buttons">
+                              <button class="insert-table-button button">Вставить</button>
+                          </div>
+                      </form>
+                  </text>)
+        .Draggable(true)
+        .Modal(true)
+        .Buttons(b => b.Close())
+        .Visible(false)
+        .Width(600)
+        .Height(300)
+        .Render();
+}
+
+@section LastScripts
+{
+    <script type="text/javascript">
+
+        var insertTable = $('#InsertTable');
+
+        var textEdit;
+
+        function InsetTableWindowOpen() {
+            insertTable
+                .data('tWindow')
+                .center()
+                .refresh();
+
+            $('html, body').animate({
+                scrollTop: $(document).height() - $(window).height()
+            },1400,"easeOutQuint");
+       }
+
+        $(".insert-table").live("click", function () {
+            var editArea = $(this).closest('table').data('tEditor').document;
+            textEdit = $(editArea).find('body');
+            var insertTableWindow = insertTable.data('tWindow');
+            insertTableWindow.open();
+
+            return true;
+        });
+
+        $(".insert-table-button").live("click", function () {
+            var insertTableWindow = insertTable.data('tWindow');
+
+            var rows = parseInt($("#Rows").val());
+            var columns = parseInt($("#Columns").val());
+            var table = '<table border="1" >';
+            for (var i = 0; i < rows; i++) {
+                table += '<tr>';
+                for (var j = 0; j < columns; j++) {
+                    table += '<td>&nbsp;</td>';
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+
+            textEdit.append(table);
+            insertTableWindow.close();
+
+            return false;
+        });
+
+    </script>
+}

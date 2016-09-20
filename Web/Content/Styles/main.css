@@ -1,0 +1,432 @@
+﻿@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700&subset=latin,cyrillic);
+/* http://meyerweb.com/eric/tools/css/reset/ 
+      v2.0 | 20110126
+      License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    background-color: #f2f2f2;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+#toolbar {
+    background-color: #005210;
+    font-size: 0;
+    position: relative;
+    width: 100%;
+    height: 54px;
+}
+
+#toolbar li.button {
+    color: #ffffff;
+    font-size: 14px;
+    text-align: center;
+}
+
+#toolbar li.button,
+#toolbar li.button a,
+#toolbar li.button.current > span {
+    display: inline-block;
+    width: 150px;
+    height: 54px;
+    line-height: 54px;
+}
+
+#toolbar li.button.current > span {
+    background-color: #006f22;
+    cursor: default;
+}
+
+#toolbar li.button img {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    margin-right: 10px;
+}
+
+#toolbar li.button a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+#toolbar li.button:hover {
+    cursor: pointer;
+    background-color: #006f22;
+}
+
+#toolbar .button.left {
+    position: static;
+}
+
+#toolbar .button.right {
+    position: absolute;
+    right: 0;
+}
+
+#signin {
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 250px;
+}
+
+#signin h6 {
+    color: #005210;
+    margin-bottom: 20px;
+}
+
+#signin .field {
+    position: relative;
+}
+
+#signin .field input[type=text],
+#signin .field input[type=password] {
+    border: none;
+    outline: none;
+    background-color: white;
+    margin: 0;
+    padding-left: 30px;
+    width: 170px;
+    height: 36px;
+    background-position: 10px center;
+    background-repeat: no-repeat;
+}
+
+#signin .field input[type=text]:focus,
+#signin .field input[type=password]:focus {
+    background-color: #e5e6e7;
+}
+
+#signin .field input[type=text] {
+    background-image: url('/Content/Images/login.png');
+}
+
+#signin .field input[type=password] {
+    background-image: url('/Content/Images/pass.png');
+}
+
+#signin .field span.field-validation-error {
+    font-style: italic;
+    font-weight: bold;
+    font-size: 80%;
+    background-color: #a3d3af;
+    background-image: url('/Content/Images/exclamation.png');
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 200px;
+    margin-left: 220px;
+    padding: 0 15px 0 25px;
+}
+
+#signin .field span.field-validation-error::before {
+    display: block;
+    position: absolute;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-right: 10px solid #a3d3af;
+    content: ' ';
+}
+
+#signin .field span.field-validation-error,
+#signin .field span.field-validation-error span {
+    height: 36px;
+    line-height: 36px;
+}
+
+#signin input[type=submit] {
+    color: #ffffff;
+    background-color: #005210;
+    border: none;
+    outline: none !important;
+    margin: 0;
+    width: 200px;
+    height: 36px;
+    line-height: 36px;
+}
+
+#signin input[type=submit]:hover {
+    cursor: pointer;
+    background-color: #006f22;
+}
+
+ul.tabs {
+    margin-top: 70px;
+    height: 70px;
+}
+
+ul.tabs li.tab {
+    background-color: #ffffff;
+    display: block;
+    float: left;
+    width: 150px;
+    height: 70px;
+}
+
+ul.tabs li.tab.disabled {
+    background-color: #e6e6e6;
+}
+
+ul.tabs li.tab.disabled a {
+    text-decoration: none;
+}
+
+ul.tabs li.tab.disabled a span {
+    color: #999999;
+}
+
+ul.tabs li.tab * {
+    display: block;
+    float: left;
+    height: 70px;
+}
+
+ul.tabs li.tab a,
+ul.tabs li.tab span.link {
+    text-decoration: none;
+}
+
+ul.tabs li.tab span.link {
+    cursor: default;
+}
+
+ul.tabs li.tab i {
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    width: 30px;
+    padding: 0 15px 0 10px;
+}
+
+ul.tabs li.tab span.text {
+    color: #000000;
+    font-weight: bold;
+    width: 95px;
+    padding-top: 21px;
+}
+
+.tab.actions i {
+    background-image: url('/Content/Images/actions.png');
+}
+
+.tab.disabled.actions i {
+    background-image: url('/Content/Images/actions-shadow.png');
+}
+
+.tab.exports i {
+    background-image: url('/Content/Images/upload-history.png');
+}
+
+.tab.disabled.exports i {
+    background-image: url('/Content/Images/upload-history-shadow.png');
+}
+
+.tab.clients i {
+    background-image: url('/Content/Images/clients.png');
+}
+
+.tab.disabled.clients i {
+    background-image: url('/Content/Images/clients-shadow.png');
+}
+
+.tab.accounts i {
+    background-image: url('/Content/Images/users.png');
+    padding-right: 0 !important;
+}
+
+.tab.disabled.accounts i {
+    background-image: url('/Content/Images/users-shadow.png');
+}
+
+.tab.document-types i {
+    background-image: url('/Content/Images/card-types.png');
+}
+
+.tab.disabled.document-types i {
+    background-image: url('/Content/Images/card-types-shadow.png');
+}
+
+.tab.clients span.text,
+.tab.accounts span.text {
+    padding-top: 28px !important;
+}
+
+h2 {
+    color: #005210;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 40px 0 10px 15px;
+}
+
+a.button {
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #005210;
+    border: none;
+    outline: none;
+    display: inline-block;
+    width: 200px;
+    height: 36px;
+    line-height: 36px;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+a.button.small {
+    width: 100px;
+}
+
+a.button.disabled {
+    background-color: #999999;
+}
+
+a.button:hover {
+    cursor: pointer;
+    background-color: #006f22;
+}
+
+.search-result .t-grid-header .t-header .t-link .t-icon {
+    top: 17px !important;
+}
+
+.error-message {
+    width: 500px;
+    margin-left: 15px;
+}
+
+.error-message p {
+    line-height: 1.2em;
+    margin-bottom: 10px;
+}

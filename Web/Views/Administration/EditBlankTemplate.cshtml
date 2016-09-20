@@ -1,0 +1,31 @@
+﻿@model Web.Application.Administration.Forms.EditBlankTemplateForm
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Редактирование шаблона бланка";
+}
+
+<h2>@ViewBag.BlankTemplateName</h2>
+@using (Html.BeginForm("EditBlankTemplate", "Administration", FormMethod.Post))
+{
+    
+    <div >
+        @foreach (var category in (IEnumerable<SelectListItem>) ViewBag.Categories)
+        {
+            <div >
+            <input type="checkbox" name="CategoryIds" value="@category.Value" @if (category.Selected)
+                                                                              {
+                                                                                  <text> checked="checked" </text>
+                                                                              } />
+            @Html.Label("CategoryIds", category.Text)
+                </div>
+        }
+    </div>
+
+    @Html.HiddenFor(x => x.BlankTemplateId)
+
+    <div class="buttons">
+        <input type="submit" value="Изменить" />
+    </div>
+
+    @Html.GlobalValidationMessage()
+}

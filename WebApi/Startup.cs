@@ -1,7 +1,8 @@
 ﻿using Forum.WebApi;
 using Microsoft.Owin;
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup(typeof (Startup))]
+
 namespace Forum.WebApi
 {
 	using System.Data.Entity.Migrations;

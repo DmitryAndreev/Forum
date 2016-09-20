@@ -1,0 +1,5 @@
+﻿@using AutoMapper
+@using Domain.Model.Blank
+@model Unit
+
+@Html.DropDownListFor(m => m, Mapper.Map<SelectList>(Enum.GetValues(typeof (Unit))))

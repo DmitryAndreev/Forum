@@ -1,0 +1,21 @@
+﻿@using Domain.Model.Extensions
+@model Domain.Model.BlankTemplates.Dtos.BlankTemplateCompanyDto
+
+<div class="b-blank @string.Format("b-blank--{0}", @Model.Size) @(Model.IsFavorite ? "b-blank--favorite" : null)" data-id="@Model.Id" data-image="@Model.PathToImage" data-title="@Model.Name">
+    <div class="b-blank__inner">
+        <div class="b-blank__figure">
+            <ul class="b-blank__ls">
+                @for (var i = 0; i < @Model.Size.GetBlankCountOnList(); i++)
+                {
+                    <li class="b-blank__i"><span>@Model.Size.GetDescription()</span></li>
+                }
+            </ul>
+            <div class="b-blank__badge">A4</div>
+        </div>
+        <div class="b-blank__title">@Model.Name</div>
+        <div class="b-blank__corner"><div class="b-blank__star js-blank__star"></div></div>
+        <div class="b-blank__loupe js-blank__preview"></div>
+    </div>
+    <a href="@Url.Action("Form", "Print", new { blankTemplateId = Model.Id })" target="_blank" class="button button--default b-blank__button">Выбрать</a>		
+</div>
+

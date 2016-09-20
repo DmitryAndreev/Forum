@@ -1,0 +1,22 @@
+﻿@using Web.Application.Administration.Forms
+@model ExportContactsForm
+@{
+    ViewBag.Title = "Выгрузка контактов";
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+}
+
+@Html.Partial("Partials/UploadsTabs")
+
+@using (Html.BeginForm("ExportContacts", "Administration"))
+{
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.Type)</dt>
+        <dd>@Html.TelerikDropDownListFor(x => x.Type, typeof (ExportType))</dd>
+        <dd>@Html.ValidationMessageFor(x => x.Type)</dd>
+    </dl>
+
+    <div class="buttons">
+        <input type="submit" value="Выгрузить"/>
+    </div>
+    @Html.GlobalValidationMessage()
+}  

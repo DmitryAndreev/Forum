@@ -18,10 +18,7 @@
 
 		public int SkipCount
 		{
-			get
-			{
-				return (Page - 1) * PageSizeValue;
-			}
+			get { return (Page - 1)*PageSizeValue; }
 		}
 
 		public void FixPageForCount(int count)

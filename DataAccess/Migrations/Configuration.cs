@@ -5,15 +5,14 @@ namespace Forum.DataAccess.Migrations
 
 	[UsedImplicitly]
 	public sealed class Configuration : DbMigrationsConfiguration<ForumDbContext>
-    {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = false;
-        }
+	{
+		public Configuration()
+		{
+			AutomaticMigrationsEnabled = false;
+		}
 
-        protected override void Seed(ForumDbContext context)
-        {
-           
-        }
-    }
+		protected override void Seed(ForumDbContext context)
+		{
+		}
+	}
 }

@@ -13,7 +13,7 @@ namespace Forum.DataAccess
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			modelBuilder.Configurations.Add(new MessageMap());
+			modelBuilder.Configurations.Add(new CardMap());
 
 			base.OnModelCreating(modelBuilder);
 		}

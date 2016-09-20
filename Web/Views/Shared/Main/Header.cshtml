@@ -1,0 +1,29 @@
+﻿<header class="l-header b-header">
+	<div class="b-header__pad">
+		<div class="b-header__wave b-header__wave--first"></div>
+		<div class="b-header__wave b-header__wave--last"></div>
+	</div>
+	<div class="l-container b-header__inner">
+		<div class="b-header__logo">
+			<a href="@Url.Action("Operations", "Home")">Blanksomat</a>
+		</div>
+		<div class="b-header__company b-company">
+			<div class="b-company__inner">
+				<div class="b-company__add b-link">
+					<i class="b-link__icon">+</i>
+                    <a href="@Url.Action("Add", "Company")">Добавить компанию</a>
+				</div>
+                <div class="b-company__drop">
+                    @Html.Action("AccountCompanies", "ContextCompany")
+                </div>
+			</div>
+		</div>
+		<div class="b-header__account b-account">
+            <ul class="b-account__ls">
+                <li class="b-account__i"><a href="@Url.Action("SignOut", "Auth")">Выйти</a></li>
+                <li class="b-account__i"><a href="@Url.Action("Index", "Profile")">Личный кабинет</a></li>
+            </ul>
+            <div class="b-account__username js-user" data-balance="@Html.CompanyBalance()" data-has-info="@ViewBag.CompanyInfoIsEmpty">@Html.AccountName()</div>
+		</div>
+	</div>
+</header>

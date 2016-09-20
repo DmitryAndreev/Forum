@@ -1,0 +1,22 @@
+﻿@using Web.Application.Administration.Tabs
+<ul class="tabs">
+    @{
+        Html.RenderTabs<OrderTabs>(
+            @<text>
+                <li class="tab tab-@item.Id">
+                    <a href="@item.Action">
+                        <i></i>
+                        <span class="text">@item.Label</span>
+                    </a>
+                </li>
+            </text>,
+            @<text>
+                <li class="tab tab-@item.Id disabled">
+                    <a href="@item.Action">
+                        <i></i>
+                        <span class="text">@item.Label</span>
+                    </a>
+                </li>
+            </text>);
+    }
+</ul>

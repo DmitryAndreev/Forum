@@ -1,0 +1,72 @@
+﻿@using Web.Application.Boilerplate
+@using StackExchange.Profiling
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>@ViewBag.Title | BLANKSOMAT</title>
+    @RenderSection("ArticleInfo", false)
+
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext" rel="stylesheet" type="text/css" />
+    @if (Html.IsAuthorized())
+    {
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/public/build/css/styles.min.css")" />
+    }
+    else
+    {
+        <link rel="stylesheet" type="text/css" href="@Url.Content("~/public/build/css/guest.min.css")" />
+    }
+
+    <link rel="shortcut icon" href="@Url.Content("~/public/images/favicon.png")" type="image/png">
+</head>
+<body>
+    <div class="@(Html.IsAuthorized() ? "l-layout" : "l-layout l-layout--guest")">
+        @if (Html.IsAuthorized())
+        {
+            Html.RenderPartial("Main/Header");
+            Html.RenderPartial("Main/Panel");
+            Html.RenderPartial("Main/Nav");
+        }
+        else
+        {
+            Html.RenderPartial("Landing/Navigation");
+            Html.RenderPartial("Partials/Welcome");
+        }
+        <div class="l-container">
+            @RenderBody()
+        </div>
+
+        <div class="l-push"></div>
+    </div>
+
+    @{ Html.RenderPartial("Main/Footer"); }
+
+    <script type="text/javascript" src="@Url.ContentVersion("~/public/build/js/jquery.pack.min.js")"></script>  
+    <script type="text/javascript" src="@Url.ContentVersion("~/Scripts/jquery.signalR-2.1.2.min.js")"></script>
+    <script src="~/signalr/hubs"></script>   
+    @{
+        Html.RenderPartial("Partials/PublicScriptsRelease");
+    }
+
+    @RenderSection("TempSriptSection", false)
+
+    @{
+        if (HttpContext.Current.IsDebuggingEnabled != true)
+        {
+            Html.RenderPartial("Partials/Counters");
+        }
+        else
+        {
+            @MiniProfiler.RenderIncludes();
+        }
+    }
+    @Html.Partial("Partials/Copiny")
+</body>
+</html>

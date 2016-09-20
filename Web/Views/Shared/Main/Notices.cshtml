@@ -1,0 +1,26 @@
+﻿@model List<Web.Application.Notifications.Dtos.NotificationModel>
+
+@{
+    Layout = null;
+}
+
+<div class="b-notices js-notices">
+    @foreach (var notice in @Model)
+    {
+        <div class="b-notices__i">
+            <div class="b-notices__text">
+                <a href="@notice.Link">@notice.Header</a>
+            </div>
+            <div class="b-notices__close icon icon--close js-notices__close" data-id="@notice.Id"></div>
+        </div>
+    }
+    
+    <div class="b-notices__i">
+        <div class="b-notices__text">
+            <a href="/">ВНИМАНИЕ!!! Cоздав БСО, не закрывайте страницу - убедитесь
+                        что бланки успешно распечатаны. Перепечатать их невозможно.
+             </a>
+        </div>
+    </div>
+    <a href="@Url.Action("Index", "Notifications")" class="b-notices__all">Смотреть все</a>	    
+</div>

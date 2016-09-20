@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+@model Web.Application.Registration.Forms.LandingForm
+
+<div class="b-slide__header">
+    <h2>Попробуйте Blanksomat абсолютно бесплатно</h2>
+</div>
+
+<div class="b-reg">
+    <div class="b-reg__intro">
+        При регистрации вы получите <strong>100 БЛАНКОВ</strong><br />
+        и сможете их использовать на тарифе <strong>КОМФОРТ</strong>.<br />
+        Это <strong>БЕСПЛАТНО</strong> и ни к чему вас не будет обязывать.
+    </div>
+
+    <div class="b-reg__now">Регистрируйтесь сейчас!</div>
+
+    @using (Html.BeginForm("Landing", "Registration", FormMethod.Post, new { @class = "b-reg__form js-reg__form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxFor(x => x.Email, new { @class = "b-reg__input js-reg__input", placeholder = "e-mail" })
+        <input type="submit" value="Регистрация" class="b-reg__button" />
+        <div class="b-reg__notice is-hidden js-reg__notice"></div>
+    }
+
+    <div class="b-success js-success is-hidden">
+        <div class="b-success__ribbon">
+            <div class="b-success__ribbon-begin"></div>
+            <div class="b-success__ribbon-end"></div>
+            <div class="b-success__ribbon-body">
+                На указанный адрес отправлено письмо. Если вы не получили его в течение 10 минут, проверьте папку Спам.
+            </div>
+        </div>
+    </div>
+
+    <a href="@Url.Action("SignIn", "Auth")" class="b-reg__button">Вход для клиентов</a>
+
+    @*<div class="b-soon">
+            <div class="b-soon__ribbon">
+                <div class="b-soon__ribbon-begin"></div>
+                <div class="b-soon__ribbon-end"></div>
+                <div class="b-soon__ribbon-body"><a href="@Url.Action("SignIn", "Auth")">Вход для клиентов</a></div>
+            </div>
+        </div>*@
+
+</div>
+
+<div class="b-bottom">
+    <div class="b-bottom__inner">
+        <div class="b-bottom__copyright">
+            &copy; @DateTime.Now.Year Blanksomat Автоматизированная система формирования и учета бланков строгой отчетности
+        </div>
+        <div class="b-bottom__email">
+            email: privet@blanksomat.ru
+        </div>
+    </div>
+</div>

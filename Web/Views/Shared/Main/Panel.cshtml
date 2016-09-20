@@ -1,0 +1,20 @@
+﻿@using Domain.Model.Definitions
+@using Web.Application.Boilerplate.Extensions
+@using Roles = Domain.Model.Definitions.Collections.Roles
+<div class="b-panel">
+    <div class="b-panel__notices">
+	    @Html.Action("Notices", "Notifications")
+    </div>
+    <div class="b-panel__details">
+        <div class="b-details">
+            <dl class="b-details__ls">
+                <dt class="b-details__label">Баланс</dt><dd class="b-details__value"><a href="@Url.Action("CompanyPlan", "Plan")" class="js-details__balance">@Html.CompanyBalance().ToFormatBalance()</a></dd>
+                <dt class="b-details__label">Тариф</dt><dd class="b-details__value"><a href="@Url.Action("Companyplan", "Plan")" class="js-details__tariff">@Html.CompanyPlan().GetDescription()</a></dd>
+            </dl>            
+            @if (Html.IsInRole(Roles.Editors) && Html.AvailablePlans().Any() && Html.CompanyPlan() != PlanType.Clerk)
+            {
+                <a href="@Url.Action("CompanyPlan", "Plan", new { @change = true })" class="button button--success b-details__button">Сменить тариф</a>
+            }
+        </div>
+    </div>
+</div>

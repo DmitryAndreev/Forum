@@ -1,0 +1,129 @@
+﻿@model IEnumerable<Domain.Model.Administration.Dtos.OrderPaymentDto>
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Заказы";
+}
+
+@Html.Partial("Partials/OrderTabs")
+
+@{
+    Html.Telerik().Grid(Model)
+        .Name("Orders")
+        .PrefixUrlParameters(false)
+        .DataKeys(keys => keys.Add(x => x.OrderId))
+        .Columns(column =>
+                 {
+                     column.Bound(x => x.OrderId)
+                           .Title("Заказ №")
+                           .Template(x => string.Format("{0}{1}", x.OrderId, x.PaymentType.GetDescription().First()))
+                           .ReadOnly(true)
+                           .Sortable(false)
+                           .Filterable(false);
+
+                     column.Bound(x => x.FullName)
+                           .Title("Пользователь")
+                           .ReadOnly(true)
+                           .Sortable(false)
+                           .Filterable(false);
+
+                     column.Bound(x => x.CompanyName)
+                           .Title("Компания")
+                           .ReadOnly(true)
+                           .Sortable(false)
+                           .Filterable(true)
+                           .HeaderHtmlAttributes(new {@class = "FilterOnlyOn_Contains"});
+
+                     column.Bound(x => x.Inn)
+                           .Title("ИНН")
+                           .ReadOnly(true)
+                           .Sortable(false)
+                           .Filterable(true)
+                           .HeaderHtmlAttributes(new {@class = "FilterOnlyOn_IsEqualTo"});
+
+                     column.Bound(x => x.PaymentStatus)
+                           .Title("Статус")
+                           .HtmlAttributes(new { @class = "status-cell" })
+                           .Template(x => string.Format("<span data-status=\"{0}\">{1}</span>", x.PaymentStatus.ToString().ToLower(), x.PaymentStatus.GetDescription()))
+                           .Sortable(true)
+                           .Filterable(false);
+
+                     column.Bound(x => x.OrderCreatedAt)
+                           .Title("Дата формирования")
+                           .Format("{0:dd/MM/yyyy}")
+                           .ReadOnly(true)
+                           .Sortable(true)
+                           .Filterable(false);
+
+                     column.Bound(x => x.Total)
+                           .Title("Стоимость, руб")
+                           .ReadOnly(true)
+                           .Sortable(false)
+                           .Filterable(false);
+
+                     column.Command(commands => commands.Edit().ButtonType(GridButtonType.Text).Text("Изменить статус")).Width(180);
+                 })
+        .DataBinding(db => db.Server()
+                             .Select("Orders", "Administration")
+                             .Update("SaveState", "Administration"))
+        .EnableCustomBinding(true)
+        .Sortable(sorting => sorting.OrderBy(x => x.Add(dto => dto.PaymentStatus).Ascending()).AllowUnsort(false))
+        .Filterable()
+        .Pageable(pager => pager.Total(ViewBag.OrderCount))
+        .Editable(e => e.Mode(GridEditMode.InLine))
+        .Footer(true)
+        .NoRecordsTemplate("Нет строк для отображения")
+        .Render();
+}
+
+<script type="text/javascript">
+    (function($) {
+        {
+            var $rows = $('#Orders tr'),
+                length = $rows.length,
+                i = 0,
+                $current;
+
+            if (length) {
+                for (; i < length; i++) {
+                    $current = $rows.eq(i);
+
+                    if ($current.find('.status-cell span').data('status') === 'success') {
+                        $current.find('.t-grid-edit').hide();
+                    } else {
+                        $current.find('.t-grid-edit').show();
+                    }
+                }
+            };
+
+            $(".FilterOnlyOn_Contains .t-filter").click(function() {
+                setTimeout(function() {
+                    setFilter("substringof", "Содержит");
+                });
+            });
+
+            $(".FilterOnlyOn_IsEqualTo .t-filter").click(function() {
+                setTimeout(function() {
+                    setFilter("eq", "Равно");
+                });
+            });
+
+            function setFilter(filterValue, filterText) {
+                var offset = 0;
+                var filterSelects = $(".t-filter-operator");
+                if (filterSelects.length == 4) {
+                    offset = 2;
+                }
+
+                var filterOptions1 = filterSelects.eq(0 + offset);
+                filterOptions1.empty();
+                filterOptions1.append($("<option />").val(filterValue).text(filterText));
+
+                var filterOptions2 = filterSelects.eq(1 + offset);
+                filterOptions2.hide();
+                $(".t-filter-help-text").text("");
+                $("input[type=text]").last().hide();
+            };
+        };
+    }(jQuery));
+</script>

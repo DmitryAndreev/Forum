@@ -1,0 +1,465 @@
+﻿.t-widget.t-grid {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.t-grid {
+    @main-padding: 15px;
+    @secondary-padding: 10px;
+
+    .t-grid-header {
+        &, & tr, & tr th {
+            color: @color-table-font;
+            border: none;
+            background-color: @color-table-header;
+            height: @table-header-height;
+        }
+
+        .t-header {
+            position: relative;
+            padding: 0;
+            border-bottom: 1px solid @color-table-border;
+            white-space: normal;
+            vertical-align: top;
+
+            .t-link {
+                color: @color-table-font;
+                display: inline-block;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                width: 100%;
+                padding: @main-padding @secondary-padding @secondary-padding 28px;
+                margin: 0;
+                height: @table-header-height;
+                text-transform: uppercase;
+                position: relative;
+
+                &.t-state-hover {
+                    color: @color-dark;
+                    background-color: transparent;
+                }
+
+                .t-icon {
+                    background-position: center center;
+                    position: absolute;
+                    left: 3px;
+                    top: 36px;
+                    margin-left: 5px;
+
+                    &.t-arrow-up {
+                        background-image: url('/Content/Images/up-active.png');
+                    }
+
+                    &.t-arrow-down {
+                        background-image: url('/Content/Images/down-active.png');
+                    }
+                }
+            }
+
+            .t-icon {
+                width: 15px;
+                height: 15px;
+                padding: 0;
+                margin: 0;
+            }
+
+            .t-grid-filter {
+                border: none;
+                background-color: transparent;
+                //position: absolute;
+                //left: 8px;
+                //top: 17px;
+                //display: inline-block;
+                padding: 0;
+                margin: -53px 0 0 8px;
+                float: left;
+
+                .t-filter {
+                    background-position: center center;
+                }
+
+                &.t-state-default {
+                    .t-filter {
+                        background-image: url('/Content/Images/filter-shadow.png');
+                    }
+                }
+
+                &.t-active-filter, &.t-state-hover {
+                    .t-filter {
+                        background-image: url('/Content/Images/filter.png');
+                    }
+                }
+            }
+        }
+    }
+
+    form {
+        margin: 0;
+    }
+
+    tr td {
+        color: @color-table-font;
+        border: none;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        height: @table-row-height;
+        padding: @main-padding @secondary-padding @secondary-padding 28px;
+        background-color: @color-table-row-even;
+
+        .t-button {
+            border: none;
+            color: @color-dark;
+            background-color: transparent;
+            min-width: 0;
+            padding: 0;
+            margin: 0 .4em;
+            text-decoration: underline;
+        }
+        .t-button:focus {
+            outline-color: transparent;
+        }
+
+        input {
+            &.input-validation-error {
+                border: none;
+            }
+
+            &[type=text] {
+                background-color: @color-focused;
+            }
+        }
+
+        span.field-validation-error {
+            @arrow-width: 10px;
+            @arrow-height: @input-height / 2;
+
+            display: inline-block;
+            margin-top: @arrow-width * 2;
+            margin-left: -4px;
+
+            &:before {
+                border-right: @arrow-height solid transparent;
+                border-left: @arrow-height solid transparent;
+                border-bottom: @arrow-width solid #a3d3af;
+                position: absolute;
+                top: -1 * (@arrow-width + @arrow-height);
+                left: 0;
+                display: block;
+                width: 0;
+                height: 0;
+                content: ' ';
+            }
+        }
+    }
+
+    .t-alt td {
+        color: @color-table-font;
+        background-color: @color-table-row-odd;
+    }
+
+    .t-grid-bottom.t-grid-pager {
+        @sizing: 26px;
+
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 0;
+
+        .t-icon {
+            background-color: @color-dark;
+            background-repeat: no-repeat;
+            background-position: center center;
+            width: @sizing;
+            height: @sizing;
+            margin: 0;
+
+            &:hover {
+                background-color: @color-light;
+            }
+        }
+
+        .t-status {
+            border: none;
+            padding: 0;
+            margin: 0 5px 0 10px;
+
+            .t-icon.t-refresh {
+                background-image: url('/Content/Images/update.png');
+            }
+        }
+
+        .t-pager {
+            .t-link {
+                border: none;
+                padding: 0;
+                margin: 0 5px 0 0;
+
+                .t-icon {
+                    &.t-arrow-first {
+                        background-image: url('/Content/Images/to-start.png');
+                    }
+
+                    &.t-arrow-prev {
+                        background-image: url('/Content/Images/prev.png');
+                    }
+
+                    &.t-arrow-next {
+                        background-image: url('/Content/Images/next.png');
+                    }
+
+                    &.t-arrow-last {
+                        background-image: url('/Content/Images/to-end.png');
+                    }
+                }
+
+                &.t-state-disabled {
+                    .t-icon {
+                        background-color: @color-disabled;
+                    }
+                }
+            }
+
+            .t-numeric {
+                margin: 0 5px 0 0;
+
+                span {
+                    padding: 0;
+                    margin: 0 5px 0 0;
+                    background-color: @color-dark;
+                    text-align: center;
+                }
+
+                .t-link {
+                    border: 1px solid @color-focused;
+                    //width: @sizing - 2px;
+                    padding: 0 7px;
+                    height: @sizing - 2px;
+                    line-height: @sizing - 2px;
+                    text-align: center;
+
+                    &:hover {
+                        background-color: @color-light;
+                    }
+                }
+
+                *:last-of-type {
+                    margin: 0;
+                }
+
+                span + .t-link {
+                    margin-left: 5px;
+                }
+
+                span, .t-link:hover {
+                    border: none;
+                    display: inline-block;
+                    color: @color-font;
+                    //width: @sizing;
+                    padding: 0 8px;
+                    height: @sizing;
+                    line-height: @sizing;
+                }
+            }
+        }
+    }
+
+    .t-grid-edit-row .t-dropdown {
+        margin: 0;
+    }
+}
+
+.t-toolbar.t-grid-toolbar {
+    border: none;
+    padding: 20px 15px 30px 15px;
+
+    .t-button {
+        color: @color-font;
+        background-color: @color-dark;
+        border: none;
+        width: @table-toolbar-button-width;
+        height: @table-toolbar-button-height;
+        line-height: @table-toolbar-button-height;
+        padding: 0;
+        margin: 0 10px 0 0;
+        text-align: center;
+
+        &:hover {
+            background-color: @color-light;
+        }
+
+        &.disabled {
+            background-color: @color-disabled;
+
+            &:hover {
+                background-color: @color-disabled;
+            }
+        }
+    }
+}
+
+.t-window {
+    @sizing: 30px;
+
+    border: none;
+
+    .t-window-titlebar {
+        border: none;
+        background-color: @color-dark;
+        height: @sizing;
+        padding: 0;
+
+        .t-window-title {
+            left: @sizing;       
+            height: @sizing;
+            line-height: @sizing;
+        }
+
+        .t-window-actions {
+            border: none;            
+            background-color: @color-dark;
+            width: @sizing;           
+            height: @sizing;
+            padding: 0;
+            right: 0;
+
+            &:hover {
+                background-color: @color-light;
+            }
+
+            .t-link {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+
+                &.t-state-hover {
+                    border: none;
+                }
+
+                .t-icon.t-close {
+                    width: 100%;
+                    height: 100%;
+                    background-image: url('/Content/Images/close.png');
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                }
+            }
+        }
+    }
+}
+
+.t-filter-options {
+    min-width: @input-width;
+
+    .t-button {
+        border: none;
+        outline: none;
+        color: @color-font;
+        background-color: @color-dark;
+        width: @input-width;
+        height: @input-height + 5px;
+
+        .t-icon {
+            background-position: center center;
+            position: relative;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px 0 0;
+        }
+
+        &.t-clear-button {
+            .t-clear-filter {
+                background-image: url('/Content/Images/clear-filter.png');
+            }
+        }
+
+        &.t-filter-button {
+            .t-filter {
+                background-image: url('/Content/Images/exequte-filter.png');
+            }
+        }
+
+        &:hover {
+            background-color: @color-light;
+        }
+    }
+
+    .t-filter-help-text {
+        color: @color-font;
+        background-color: @color-disabled;
+        height: @input-height + 5px;
+        line-height: @input-height + 5px;
+        padding: 0 10px 0;
+        margin: 0;
+    }
+
+    select {
+        border: none;
+        outline: none;
+        padding: 0;
+        margin: 0;
+        min-width: 100%;
+        height: 36px;
+    }
+
+    input[type=text] {
+        background-color: @color-font;
+        border: none;
+        border-top: 1px solid @color-disabled;
+        border-bottom: 1px solid @color-disabled;
+        outline: none;
+        width: @input-width - 10px;
+        height: @input-height;
+        padding: 0 0 0 10px;
+        margin: 0;
+
+        &:focus {
+            background-color: @color-focused;
+        }
+    }
+}
+
+.t-dropdown.t-popup {
+    @width: 400px;
+
+    min-width: @width;
+
+    ul.t-reset {
+        li.t-item {
+            overflow: hidden;
+            width: auto;
+            padding-right: 10px;
+            -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.edit-popup-content {
+    .t-textarea {
+        width: 700px;
+    }
+
+    form & input[type=text] {
+        width: 720px;
+    }
+
+    .t-widget.t-dropdown {
+        width: 730px;
+    }
+}
+
+.t-grid-header, .t-header {
+    border-color: @color-light;
+    background: @color-light;
+}
+
+.t-animation-container .t-item {
+    padding: 0 !important;
+
+    div {
+        margin: 0;
+    }
+}

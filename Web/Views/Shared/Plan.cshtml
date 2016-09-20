@@ -1,0 +1,29 @@
+﻿@using Domain.Model.Definitions
+@using Web.Application.Boilerplate.Extensions
+@using Roles = Domain.Model.Definitions.Collections.Roles
+<div>
+    Баланс: <a href="@Url.Action("CompanyPlan", "Plan")"> @Html.CompanyBalance().ToFormatBalance() </a>
+    <br />
+    Тариф: <a href="@Url.Action("CompanyPlan", "Plan")"> @Html.CompanyPlan().GetDescription() </a>
+    @if (Html.IsInRole(Roles.Editors) && Html.AvailablePlans().Any() && Html.CompanyPlan()!=PlanType.Clerk)
+    {
+        <input type="button" id="change-window-button" class="button" value="Сменить" />
+    }
+
+</div>
+
+@{
+    Html.Telerik().Window()
+        .Name("ChangePlan")
+        .Title("Смена тарифа")
+        .ClientEvents(events => events.OnOpen("CompanyPlanWindowOpen").OnRefresh("CompanyPlanWindowRefresh"))
+        .Resizable(resizing => resizing.Enabled(false))
+        .LoadContentFrom("Change", "Plan", null)
+        .Draggable(true)
+        .Modal(true)
+        .Buttons(b => b.Close())
+        .Visible(false)
+        .Width(600)
+        .Height(300)
+        .Render();
+}

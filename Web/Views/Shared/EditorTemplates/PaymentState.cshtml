@@ -1,0 +1,5 @@
+﻿@using AutoMapper
+@using Domain.Model.Definitions
+@model PaymentState
+
+@Html.DropDownListFor(m => m, Mapper.Map<SelectList>(Enum.GetValues(typeof (PaymentState))))

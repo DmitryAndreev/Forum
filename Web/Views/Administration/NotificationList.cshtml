@@ -1,0 +1,9 @@
+﻿@using Web.Application.Administration.Forms
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Оповещения";
+}
+
+@Html.Partial("Partials/Notifications")
+@Html.Partial("Partials/BalanceNotifications", (BalanceNotificationForm) ViewBag.BalanceNotificationForm)
+@Html.Partial("Partials/BalanceLimit", (BalanceLimitForm) ViewBag.BalanceLimitForm)

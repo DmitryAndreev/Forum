@@ -1,0 +1,77 @@
+﻿@model Domain.Model.Paging.PagingState
+@{
+    var pageRange = 2;
+}
+@helper PageUrl(int pageNumber)
+{
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    var queryString = ViewContext.HttpContext.Request.QueryString;
+
+    var pagingRouteValues = Model.WithPageNumber(pageNumber).ToValues();
+    var routeValues = new RouteValueDictionary(pagingRouteValues);
+    foreach (string key in queryString.Keys)
+    {
+        if (routeValues.ContainsKey(key) == false)
+        {
+            routeValues.Add(key, queryString[key]);
+        }
+    }
+
+    @Url.Action(actionName, controllerName, routeValues)
+}
+
+@helper IsDisabled(bool isDisabled, string state)
+{
+    if (isDisabled)
+    {
+        <text>is-disabled</text>
+    }
+}
+
+@if (Model.PageCount > 1)
+{
+    @*<div class="p-pages b-pages">
+        <ul class="b-pages-ls">
+            <li class="b-pages-i b-pages-i--first @IsDisabled(Model.IsFirstPage)"><a href="@PageUrl(1)">first<i class="icon icon-page-first"></i></a></li>
+            <li class="b-pages-i b-pages-i--previous @IsDisabled(Model.IsFirstPage)"><a href="@PageUrl(Model.PreviousPage)">prev<i class="icon icon-page-prev"></i></a></li>
+            @foreach (var pageNumber in Model.PageRange(pageSize))
+            {
+                if (pageNumber == Model.PageNumber)
+                {
+                    <li class="b-pages-i is-current"><span>@pageNumber</span></li>
+                }
+                else
+                {
+                    <li class="b-pages-i"><a href="@PageUrl(pageNumber)">@pageNumber</a></li>
+                }
+            }
+            <li class="b-pages-i is-disabled"><span>&hellip;</span></li>
+            <li class="b-pages-i b-pages-i--next @IsDisabled(Model.IsLastPage)"><a href="@PageUrl(Model.NextPage)">next<i class="icon icon-page-next"></i></a></li>
+            <li class="b-pages-i b-pages-i--last @IsDisabled(Model.IsLastPage)"><a href="@PageUrl(Model.PageCount)">last<i class="icon icon-page-last"></i></a></li>
+        </ul>
+    </div>*@
+
+    <div class="b-paging">
+        <ul class="b-paging__ls">
+            <li class="b-paging__i b-paging__first"><a href="@PageUrl(1)">&nbsp;</a></li>
+            <li class="b-paging__i b-paging__prev"><a href="@PageUrl(Model.PreviousPage)">&nbsp;</a></li>
+            <li class="b-paging__i b-paging__gap"><span>&hellip;</span></li>
+            @foreach (var pageNumber in Model.PageRange(pageRange))
+            {
+                if (pageNumber == Model.PageNumber)
+                {
+                    <li class="b-paging__i b-paging__current"><span>@pageNumber</span></li>
+                }
+                else
+                {
+                    <li class="b-paging__i"><a href="@PageUrl(pageNumber)">@pageNumber</a></li>
+                }
+            }
+            <li class="b-paging__i b-paging__gap"><span>&hellip;</span></li>
+            <li class="b-paging__i b-paging__next"><a href="@PageUrl(Model.NextPage)">&nbsp;</a></li>
+            <li class="b-paging__i b-paging__last"><a href="@PageUrl(Model.PageCount)">&nbsp;</a></li>
+        </ul>
+    </div>
+
+}       

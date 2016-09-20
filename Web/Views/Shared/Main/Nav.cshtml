@@ -1,0 +1,20 @@
+﻿@using Web.Application.Home.Tabs
+<nav class="b-nav">
+    <div class="b-nav__inner l-container">
+        <ul class="b-nav__ls">    
+            @{
+                Html.RenderTabs<ToolbarTabs>(
+                    @<text>
+                         <li class="b-nav__i">
+                             <a class="b-nav__link b-nav__link--current" href="@item.Action">@item.Label</a>
+                         </li>
+                     </text>,
+                    @<text>
+                         <li class="b-nav__i">
+                             <a class="b-nav__link" href="@item.Action">@item.Label</a>
+                         </li>
+                     </text>);
+            }
+        </ul>
+    </div>
+</nav>

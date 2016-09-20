@@ -1,0 +1,14 @@
+﻿@model Web.Application.Administration.Forms.BalanceNotificationForm
+
+@using (Html.BeginForm("BalanceNotifications", "Administration", FormMethod.Post))
+{
+    <dl class="form-inline">
+        <dt>@Html.LabelFor(x => x.LowBalanceMessage)</dt>
+        <dd>@Html.TextAreaFor(x => x.LowBalanceMessage, new { @class = "form-textarea" })</dd>
+        <dd>@Html.ValidationMessageFor(x => x.LowBalanceMessage)</dd>
+    </dl>
+
+    <div class="buttons">
+        <input type="submit" value="Изменить" />
+    </div>
+}

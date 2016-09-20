@@ -1,0 +1,299 @@
+﻿form {
+    @row-left-spacing: 150px;
+    @row-inter-spacing: 30px;
+
+    margin-top: 50px;
+
+    .checkbox-wrapper {
+        margin-left: @row-left-spacing;
+        margin-bottom: @row-inter-spacing;
+
+        label {
+            color: @color-dark;
+        }
+
+        input {
+            margin-left: 0;
+        }
+    }
+
+    fieldset {
+        .clearfix();
+        margin-bottom: @row-inter-spacing;
+
+        legend, section {
+            float: left;
+        }
+
+        legend {
+            @margin-right: 10px;
+
+            width: @row-left-spacing - @margin-right - 20px;
+            padding: 0 0 0 20px;
+            margin-right: @margin-right;
+            text-align: right;
+
+            label {
+                color: @color-dark;
+                display: block;
+                width: 100%;
+            }
+        }
+
+        section {
+            .field {
+                margin-bottom: @input-height/4;
+
+                input {
+                    margin-left: 0;
+                }
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .table-wrapper {
+        margin-left: @row-left-spacing;
+        margin-bottom: @row-inter-spacing;
+        max-width: 900px;
+    }
+
+    input[type=text], input[type=password] {
+
+        background-color: @color-font;
+        border: none;
+        outline: none;
+        width: @input-width*2 - 10px;
+        height: @input-height;
+        padding: 0 0 0 10px;
+        margin: 0;
+
+        &:focus {
+            background-color: @color-focused;
+        }
+
+        .tab-content & {
+            background-color: darken(@color-font, 5%);
+
+            &:focus {
+                background-color: @color-focused;
+            }
+        }
+    }
+
+    @arrow-width: 10px;
+    @arrow-height: @input-height / 2;
+
+    span.field-validation-error {
+        font-style: italic;
+        font-weight: bold;
+        font-size: 80%;
+        background: @color-highlight url('/Content/Images/exclamation.png') no-repeat 10px 10px;
+        position: relative;
+        display: block;
+        line-height: @signin-button-height;
+        padding: 0 15px 0 25px;
+        margin-left: @arrow-width * 2;
+
+        &:before {
+            border-top: @arrow-height solid transparent;
+            border-bottom: @arrow-height solid transparent;
+            border-right: @arrow-width solid @color-highlight;
+            position: absolute;
+            left: -1 * @arrow-width;
+            display: block;
+            width: 0;
+            height: 0;
+            content: ' ';
+        }
+    }
+
+    .validation-upper {
+        margin-top: -1 * (@row-inter-spacing - @arrow-width);
+        margin-left: @row-left-spacing;
+        margin-bottom: @row-inter-spacing;
+
+        span.field-validation-error {
+            margin-left: 0;
+
+            &:before {
+                border-right: @arrow-height solid transparent;
+                border-left: @arrow-height solid transparent;
+                border-bottom: @arrow-width solid #a3d3af;
+                position: absolute;
+                top: -1 * (@arrow-width + @arrow-height);
+                left: 0;
+                display: block;
+                width: 0;
+                height: 0;
+                content: ' ';
+            }
+        }
+    }
+
+    .buttons {
+        margin-left: @row-left-spacing;
+        margin-bottom: @row-inter-spacing;
+    }
+
+    .button, input[type=submit] {
+        color: @color-font;
+        background-color: @color-dark;
+        border: none;
+        outline: none;
+        width: @input-width;
+        height: @input-height;
+        line-height: @input-height;
+        padding: 0;
+        margin: 0;
+
+        &:hover, &:focus {
+            cursor: pointer;
+            background-color: @color-light;
+        }
+    }
+
+    input + .button {
+        margin-left: 10px;
+    }
+
+    .directory-details {
+        &:first-of-type {
+            margin-bottom: 10px;
+        }
+
+        .display {
+            line-height: @input-height;
+        }
+    }
+
+    input[disabled] {
+        background-color: @color-tab-font-inactive;
+
+        &:hover {
+            background-color: @color-tab-font-inactive;
+            cursor: default;
+        }
+    }
+}
+
+.form-inline {
+    @row-left-spacing: 150px;
+    @row-inter-spacing: 30px;
+
+    .clearfix();
+    margin-bottom: @row-inter-spacing;
+
+    dt, dd {
+        float: left;
+    }
+
+    dt {
+        @margin-right: 10px;
+
+        width: @row-left-spacing - @margin-right - 20px;
+        padding: (@input-height - 14px)/2 0 0 20px;
+        margin-right: @margin-right;
+        text-align: right;
+
+        label {
+            color: @color-dark;
+            display: block;
+            width: 100%;
+        }
+    }
+
+    dd {
+        margin-right: 10px;
+        display: block;
+
+        &.validation {
+            display: block;
+        }
+    }
+}
+
+.t-widget.t-dropdown {
+    background-color: @color-tab-active;
+    outline: none;
+    width: @input-width*2;
+    height: @input-height;
+
+    .t-dropdown-wrap {
+        border: none;
+        outline: none;
+
+        &.t-state-default {
+            cursor: pointer;
+        }
+
+        &.t-state-focused {
+            background-color: @color-focused;
+
+            .t-select {
+                cursor: default;
+                background-color: @color-light;
+            }
+        }
+
+        .t-input {
+            color: @color-tab-font-active;
+            height: @input-height;
+            line-height: @input-height;
+            padding: 0 20px 0 15px;
+        }
+
+        .t-select {
+            background-color: @color-dark;
+            height: @input-height;
+            cursor: pointer;
+
+            &:hover {
+                background-color: @color-light;
+            }
+
+            .t-icon {
+                background-position: center center;
+                background-image: url('/Content/Images/dropdown.png');
+                width: 35px;
+                height: @input-height;
+            }
+        }
+    }
+}
+
+.t-popup.t-group {
+    border: none;
+
+    ul.t-reset {
+        li.t-item {
+            color: @color-tab-font-active;
+            background-color: @color-tab-active;
+            width: @input-width - 15px - 2px;
+            height: @input-height;
+            line-height: @input-height;
+            padding: 0 0 0 15px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: @color-highlight;
+            }
+        }
+    }
+}
+
+.document-type-query {
+    .property {
+        .property-name {
+            font-weight: bold;
+        }
+    }
+}
+
+.form-textarea {
+    width: 480px;
+    height: 100px;
+}

@@ -20,10 +20,10 @@
 
 		public BaseQuery ToQuery()
 		{
-			var query = new BaseQuery { Paging = new Paging { Page = Page, PageSize = PageSize } };
+			var query = new BaseQuery {Paging = new Paging {Page = Page, PageSize = PageSize}};
 			if (!string.IsNullOrWhiteSpace(OrderBy))
 			{
-				query.Sortings = new List<Sorting> { new Sorting(OrderBy, Asc) };
+				query.Sortings = new List<Sorting> {new Sorting(OrderBy, Asc)};
 			}
 			return query;
 		}

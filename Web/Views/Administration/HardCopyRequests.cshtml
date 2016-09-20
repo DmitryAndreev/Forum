@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Domain.Model.Payment.Dto.HardCopyRequestDto>
+
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "Заказы оригиналов бухгалтерских документов";
+}
+
+@Html.Partial("Partials/OrderTabs")
+
+@{
+    Html.Telerik().Grid(Model)
+        .Name("HardCopyRequests")
+        .DataKeys(keys => keys.Add(x => x.Id))
+        .Columns(c =>
+                 {
+                     c.Bound(x => x.Company)
+                      .Title("Компания")
+                      .ReadOnly(true)
+                      .Sortable(false)
+                      .Filterable(true)
+                      .Width(250);
+
+                     c.Bound(x => x.RequestPaymentNumber)
+                      .Title("Номер платежа")
+                      .ReadOnly(true)
+                      .Sortable(false)
+                      .Filterable(false)
+                      .Width(100);
+
+                     c.Bound(x => x.RequestPaymentState)
+                      .Title("Состояние платежа")
+                      .Template(x => x.RequestPaymentState.GetDescription())
+                      .ReadOnly(true)
+                      .Sortable(false)
+                      .Filterable(true)
+                      .Width(150);
+
+                     c.Bound(x => x.CreatedAt)
+                      .Title("Дата создания")
+                      .ReadOnly(true)
+                      .Sortable(false)
+                      .Filterable(true)
+                      .Width(150);
+
+                     c.Command(commands => commands.Custom("PrintHardCopy").Text("Распечатать оригинал").Action("PrintHardCopy", "Administration")).Width(180);
+                 })
+        .Filterable()
+        .NoRecordsTemplate("Нет строк для отображения")
+        .Render();
+}

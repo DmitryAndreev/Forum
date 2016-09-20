@@ -1,0 +1,31 @@
+﻿@using Web.Application.Boilerplate
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>@ViewBag.Title | BLANKSOMAT</title>
+
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&subset=latin,cyrillic-ext,cyrillic,latin-ext" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/public/build/css/styles.min.css")" />
+    @RenderSection("IncludeStyles", false)
+    <link rel="shortcut icon" href="@Url.Content("~/public/images/favicon.png")" type="image/png">
+</head>
+<body class="l-layout--print">
+    @RenderBody()
+
+    <script type="text/javascript" src="@Url.ContentVersion("~/public/build/js/jquery.pack.min.js")"></script>
+    @{
+        Html.RenderPartial("Partials/PublicScriptsRelease");
+    }
+
+    @RenderSection("IncludeScripts", false)
+    @Html.Partial("Partials/Copiny")
+</body>
+</html>

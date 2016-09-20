@@ -1,0 +1,43 @@
+﻿@using Domain.Model.Extensions
+@model Web.Application.Articles.ViewModels.ArticleViewModel
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewBag.Section = "Помощь и контакты";
+    ViewBag.Title = Model.Title;
+}
+
+<div class="b-section">
+    <h3 class="b-section__header">@ViewBag.Section</h3>
+    <div class="b-section__body">
+        <div class="b-breadcrumbs">
+            <a href="@Url.Action("List", "Article")">Помощь и контакты</a> \ <a href="@Url.Action("List", "Article", new {id = Model.CategoryId})"> @Model.Category</a> \ @Model.Title
+        </div>
+        <article class="b-article">
+            <div class="b-article__attic">
+                <span class="b-article__date">@Model.CreatedAt.ToShortDateString()</span>
+                <div class="b-share js-share">
+                    <span class="b-share__i b-share__ok" data-type="ok"></span>
+                    <span class="b-share__i b-share__vk" data-type="vk"></span>
+                    <span class="b-share__i b-share__tw" data-type="tw"></span>
+                    <span class="b-share__i b-share__fb" data-type="fb"></span>
+                </div>
+            </div>            
+
+            <h1 class="b-article__header">@Model.Title</h1>
+
+            <div class="b-article__content">
+                @Html.Raw(Model.Text)
+            </div>
+
+        </article>
+    </div>    
+</div>
+
+@section ArticleInfo{
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:type" content="article" />
+    <meta property="article:published_time" content="@Model.CreatedAt.ToShortDateString()" />
+    <meta property="og:description" content="@Model.Text.StripHtml().ToPreview(255)" />
+    <meta name="description" content="@Model.MetaDescription">
+    <meta name="keywords" content="@Model.MetaKeywords">
+}

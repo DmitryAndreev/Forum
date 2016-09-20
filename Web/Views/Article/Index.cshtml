@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Domain.Model.Articles.Dto.ArticleDto>
+@{
+    Layout = "~/Views/Shared/_AdministrationLayout.cshtml";
+    ViewBag.Title = "База знаний";
+}
+
+@Html.Partial("Partials/ArticleTabs")
+
+
+<a href="@Url.Action("Add", "Article")" class="button button-head">Добавить статью</a>
+
+@{
+    Html.Telerik().Grid(Model)
+        .Name("Articles")
+        .DataKeys(keys => keys.Add(x => x.Id))
+        .Columns(c =>
+                 {
+                     c.Bound(x => x.Id).Hidden();
+                     c.Bound(x => x.Title).Title("Наименование").Width(150);
+                     c.Bound(x => x.Category).Title("Категория").Width(150);
+                     c.Bound(x => x.CreatedAt).Title("Дата создания").Width(250);
+                     c.Command(cmd =>
+                               {
+                                   cmd.Custom("Edit").SendDataKeys(true).Action("Edit", "Article").Text("Редактировать");
+                                   cmd.Custom("Delete").SendDataKeys(true).Action("Delete", "Article").Text("Удалить");
+                               }).HtmlAttributes(new { @class = "action-cell" });
+                 })
+        .NoRecordsTemplate("Нет строк для отображения")
+        .Selectable(x => x.Enabled(false))
+        .Footer(false)
+        .Sortable(x => x.Enabled(true))
+        .Render();
+}
+
+@section LastScripts{
+    <script type="text/javascript">
+        $('.t-grid-Delete').on('click', function (e) {
+            e.stopPropagation();
+            if (!confirm('Вы действительно хотите удалить статью?'))
+                return false;
+        });
+    </script>
+}

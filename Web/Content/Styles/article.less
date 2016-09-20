@@ -1,0 +1,42 @@
+﻿article {
+    @row-left-spacing: 15px;
+    @row-inter-spacing: 20px;
+
+    padding-left: @row-left-spacing;
+
+    .buttons {
+        font-size: 0;
+        margin: @row-inter-spacing 0 @row-inter-spacing;
+
+        > * + * {
+            margin-left: 30px;
+        }
+    }
+
+    .content {
+        border-top: 1px solid @color-disabled;
+        border-bottom: 1px solid @color-disabled;
+        width: 600px;
+        padding: @row-inter-spacing @row-left-spacing 0 @row-inter-spacing;
+
+        dl {
+            .clearfix();
+            margin: 0 0 @row-inter-spacing 0;
+
+            dt, dd {
+                float: left;
+            }
+
+            dt {
+                font-weight: bold;
+                color: @color-dark;
+                width: 140px;
+                overflow-wrap: break-word;
+            }
+
+            dd {
+                margin-left: 10px;
+            }
+        }
+    }
+}
